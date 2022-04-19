@@ -1,4 +1,3 @@
-*, *::after, *::before {
-    padding: 0;
-    margin: 0;
+.redsquare {
+    background-color: red;
 }
