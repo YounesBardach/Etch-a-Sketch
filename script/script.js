@@ -10,32 +10,57 @@ let squareWidth
 let rowHeight
 
 function createRows() {
+
     for (let i = 1; i <= newGrid; i++) {
+
         rows[i] = document.createElement("div")
         container.appendChild(rows[i])
         rows[i].classList.add(`row${i}`)
         rows[i].style.cssText = `display: flex; height: ${rowHeight}px; width: ${containerWidth}px;`
+
     }
+
 }
 
 
 function createSquares() {
+
     for (let i = 1; i <= newGrid; i++) {
+
         for (let j = 1; j <= newGrid; j++) {
+
             let row = document.querySelector(`.row${j}`)
             squares[j] = document.createElement("div")
             row.appendChild(squares[j])
-            squares[j].classList.add(`square${i}Row${j}`)
+            squares[j].classList.add(`square${i}row${j}`)
             squares[j].style.cssText = `border-style: solid; border-width: thin; width: ${squareWidth}px; height: ${rowHeight}px;`
+
         }
+
     }
+
 }
 
-function redSquare() {
+function addMouseover(nodeElement) {
+
+    function randomColor() {
+
+        let red = Math.floor(Math.random() * 256)
+        let green = Math.floor(Math.random() * 256)
+        let blue = Math.floor(Math.random() * 256)
+        nodeElement.style.backgroundColor = `rgb(${red},${green},${blue})`
+
+    }
+
+    nodeElement.addEventListener("mouseover", randomColor)
+
+}
+
+function colorSquare() {
+
     let etchSquare = document.querySelectorAll(`div[class^=square]`)
-    etchSquare.forEach(div => div.addEventListener('mouseover', () => {
-        div.classList.add("redsquare")
-    }))
+    etchSquare.forEach(addMouseover)
+
 }
 
 let button = document.createElement('button')
@@ -49,10 +74,10 @@ button.addEventListener("click", () => {
         alert(`invalid choice`)
         return
     }
-    rowHeight = containerHeight/newGrid
-    squareWidth = containerWidth/newGrid
+    rowHeight = containerHeight / newGrid
+    squareWidth = containerWidth / newGrid
     container.textContent = ""
     createRows()
     createSquares()
-    redSquare()
+    colorSquare()
 })
