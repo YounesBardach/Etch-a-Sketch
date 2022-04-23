@@ -22,7 +22,6 @@ function createRows() {
 
 }
 
-
 function createSquares() {
 
     for (let i = 1; i <= newGrid; i++) {
@@ -33,7 +32,7 @@ function createSquares() {
             squares[j] = document.createElement("div")
             row.appendChild(squares[j])
             squares[j].classList.add(`square${i}row${j}`)
-            squares[j].style.cssText = `border-style: solid; border-width: thin; width: ${squareWidth}px; height: ${rowHeight}px;`
+            squares[j].style.cssText = `width: ${squareWidth}px; height: ${rowHeight}px;`
 
         }
 
@@ -41,25 +40,52 @@ function createSquares() {
 
 }
 
-function addMouseover(nodeElement) {
+function addEvents(nodeElement) {
 
-    function randomColor() {
+    function addRandomColor() {
 
         let red = Math.floor(Math.random() * 256)
         let green = Math.floor(Math.random() * 256)
         let blue = Math.floor(Math.random() * 256)
         nodeElement.style.backgroundColor = `rgb(${red},${green},${blue})`
 
+        let blackShaders = []
+
+        for (let i = 1; i <= 10; i++) {
+
+            blackShaders.push(() => {
+
+                nodeElement.addEventListener("mouseover", () => {
+
+                    red = Math.floor(Math.random() * 256)
+                    green = Math.floor(Math.random() * 256)
+                    blue = Math.floor(Math.random() * 256)
+                    nodeElement.style.background = `linear-gradient(to bottom right, black ${i * 10}%, rgb(${red},${green},${blue}))`
+
+                }, { once: true })
+
+                nodeElement.addEventListener("mouseout", () => {
+
+                    nodeElement.addEventListener("mouseover", blackShaders[i], { once: true })
+
+                }, { once: true })
+
+            })
+
+        }
+
+        blackShaders[0]()
+
     }
 
-    nodeElement.addEventListener("mouseover", randomColor)
+    nodeElement.addEventListener("mouseover", addRandomColor, { once: true })
 
 }
 
 function colorSquare() {
 
     let etchSquare = document.querySelectorAll(`div[class^=square]`)
-    etchSquare.forEach(addMouseover)
+    etchSquare.forEach(addEvents)
 
 }
 
@@ -70,10 +96,14 @@ containerParent.insertBefore(button, container)
 
 button.addEventListener("click", () => {
     newGrid = Number(prompt("How many squares per side (limit is 100)?"))
+
     if (newGrid > 100) {
+
         alert(`invalid choice`)
         return
+
     }
+
     rowHeight = containerHeight / newGrid
     squareWidth = containerWidth / newGrid
     container.textContent = ""
