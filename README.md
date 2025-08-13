@@ -29,7 +29,7 @@ A simple browser sketchpad built to practice JavaScript DOM manipulation as part
 ---
 
 ## Live Demo
-- **[View on GitHub Pages](https://<your-github-username>.github.io/Etch-a-Sketch/)**
+- **[View on GitHub Pages](https://younesbardach.github.io/Etch-a-Sketch/)**
 
 ---
 
