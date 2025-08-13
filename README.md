@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://i.postimg.cc/RZF5Bbzf/etch-a-sketch-github-banner.png" alt="Blog API Banner" width="900" />
+</p>
+
 # Etch‑a‑Sketch
 
 A simple browser sketchpad built to practice JavaScript DOM manipulation as part
