@@ -45,8 +45,7 @@ A simple browser sketchpad built to practice JavaScript DOM manipulation as part
 ## How to Use
 1. **Open** the app.  
 2. **Hover** over the grid to draw.  
-3. Click **“Create Grid”** to enter a new size (max **100**).  
-   - The canvas keeps the same overall size; cell dimensions adjust.
+3. Click **“Create Grid”** to enter a new size (max **100**): the canvas keeps the same overall size; cell dimensions adjust.
 
 ---
 
